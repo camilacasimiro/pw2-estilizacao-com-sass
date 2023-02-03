@@ -1,0 +1,49 @@
+// Só é compilado quando é importado
+
+// Variaveis
+$text-color: rgb(0, 0, 0);
+$background-color-primary:  rgb(223, 223, 223);
+$background-color-second: rgb(248, 248, 248);
+
+.second {
+    background-color: $background-color-second;
+}
+
+.display-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    background-color:  $background-color-primary;
+    color: $text-color;
+    @extend .display-container
+};
+
+//mixins para reutilizar trecho de códigos, ele inclui o trecho, diferente da função que retorna algo.
+@mixin colorDinamic($categoria) {
+
+    $border-category: none;
+    
+    @if $categoria == romance {
+        $border-category: red;
+    } @else {
+        $border-category: rgb(21, 145, 161);
+    }
+    transform: scale(0.9);
+    transition: all ease 0.5s;
+
+    &:hover {
+        border: 1px solid  $border-category;
+        border-radius: 5px;
+        transform: scale(1);
+    }
+}   
+
+//extend
+/*
+// Diferença de extend para mixin é que segundo a documentação: Extend é usado pra reutilizar trecho de código 
+//e mixin quando precisa passar argumento 
+*/
